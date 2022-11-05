@@ -9,9 +9,21 @@ public class Driver {
 	}
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		
-		Scanner scanner = new Scanner(System.in);
+		
+		//Polymorphism used. First way
+		
+		DBConnection connection = (DBConnection) Class.forName(args[0]).newInstance(); //Change arg from run configurations
+		connection.openConnection();
+		connection.executeQuery("SELECT * FROM student");
+		connection.closeConnection();
+		
+		
+	
+		//Second way
+		
+		/*Scanner scanner = new Scanner(System.in);
 		String DBtype;
 		DBConnection dbConnection = null;
 		
@@ -42,7 +54,8 @@ public class Driver {
 		
 		dbConnection.openConnection();
 		dbConnection.executeQuery("SELECT * FROM student");
-		dbConnection.closeConnection();
+		dbConnection.closeConnection();*/
+		
 				
 	}
 	
